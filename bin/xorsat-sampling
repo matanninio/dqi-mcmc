@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2025 The DQI-MCMC Authors
+#
+# Run XOR-SAT Block Gibbs sampling for one (m, rhs-index) combination.
+#
+# Prerequisite: run precompute-xorsat-lookup --m <m> once before sampling.
+#
+# Usage:
+#   # Single run
+#   bin/xorsat-sampling --m 250 --rhs-index 0 --num-samples 100000 --ell 3 \
+#       --output results_m250.jsonl
+#
+#   # Sweep all 100 RHS indices
+#   for i in $(seq 0 99); do
+#       bin/xorsat-sampling --m 250 --rhs-index $i --num-samples 100000 --ell 3 \
+#           --output results_m250.jsonl
+#   done
+#
+# Key parameters:
+#   --m            Problem size (number of constraints)
+#   --rhs-index    RHS index 0-99
+#   --num-samples  Gibbs steps to run
+#   --ell          Polynomial degree
+#   --block-size   Bits updated per step (default: 10)
+#   --num-burn-in  Burn-in steps (default: 0)
+#   --seed-offset  Added to the deterministic per-instance seed (default: 0)
+#   --output       JSONL output file (one line appended per run)
+#
+# All arguments are forwarded verbatim to scripts/run_xorsat_sampling.py.
+# Run with --help for the full option list.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+
+exec "$ROOT/.venv/bin/python" "$ROOT/scripts/run_xorsat_sampling.py" "$@"

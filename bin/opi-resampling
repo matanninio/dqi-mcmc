@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2025 The DQI-MCMC Authors
+#
+# Run OPI resampling experiments for one (p, rhs-index, algorithm) combination.
+# Collects tau_DQI values — steps to the first "good sample" (f(x) > predN).
+#
+# Two algorithms:
+#   Algorithm 1 (Continuous): Keep sampling until N unique good samples collected.
+#   Algorithm 2 (Restart):    Restart from scratch for each of N iterations.
+#
+# Prerequisite: run generate-opi-rhs --p <p> once to create the RHS file.
+#
+# Usage:
+#   # Algorithm 1, p=11, rhs-index=0
+#   bin/opi-resampling --p 11 --rhs-index 0 --algorithm 1 \
+#       --num-bit-flips 10 --num-good-samples 10 \
+#       --output results_p11_alg1.jsonl
+#
+#   # Sweep over all primes and rhs indices (Algorithm 2)
+#   for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+#       for i in $(seq 0 9); do
+#           bin/opi-resampling --p $p --rhs-index $i --algorithm 2 \
+#               --num-bit-flips 10 --num-good-samples 10 \
+#               --output results_alg2_p${p}.jsonl
+#       done
+#   done
+#
+# Key parameters:
+#   --p                      Prime modulus
+#   --rhs-index              RHS index 0-9
+#   --algorithm              1 = Continuous, 2 = Restart
+#   --num-bit-flips          Gibbs block size (default: 10)
+#   --num-good-samples       Target number of good samples (default: 10)
+#   --seed-offset            Added to deterministic per-instance seed (default: 0)
+#   --max-samples-per-attempt  Safety limit per attempt (default: 10 000 000)
+#   --output                 JSONL output file (appended)
+#
+# All arguments are forwarded verbatim to scripts/run_opi_resampling.py.
+# Run with --help for the full option list.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+
+exec "$ROOT/.venv/bin/python" "$ROOT/scripts/run_opi_resampling.py" "$@"

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2025 The DQI-MCMC Authors
+#
+# Generate random OPI right-hand side vectors.
+#
+# Usage:
+#   bin/generate-opi-rhs --p 11
+#   bin/generate-opi-rhs --p 13 --n-samples 50 --seed 42
+#
+# All arguments are forwarded verbatim to scripts/generate_opi_rhs.py.
+# Run with --help for the full option list.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+
+exec "$ROOT/.venv/bin/python" "$ROOT/scripts/generate_opi_rhs.py" "$@"

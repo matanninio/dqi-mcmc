@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm", "cython>=3.0", "numpy>=2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dqi-mcmc"
+dynamic = ["version"]
+description = "Sampling algorithms for Decoded Quantum Interferometry paper experiments"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "The DQI-MCMC Authors" }
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "numpy>=2",
+    "scipy",
+    "cython>=3.0",
+    "gmpy2>=2.2",
+    "h5py",
+    "numba",
+    "ldpc",
+]
+
+[project.scripts]
+generate-opi-rhs          = "scripts.generate_opi_rhs:main"
+generate-xorsat-rhs       = "scripts.generate_xorsat_rhs:main"
+precompute-xorsat-lookup  = "scripts.precompute_xorsat_lookup:main"
+xorsat-sampling           = "scripts.run_xorsat_sampling:main"
+xorsat-resampling         = "scripts.run_xorsat_resampling:main"
+opi-resampling            = "scripts.run_opi_resampling:main"
+sample-opi                = "scripts.sample_opi:main"
+multisample-opi           = "scripts.multisample_opi:main"
+verify-opi-trajectories   = "scripts.verify_opi_trajectories:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools_scm]
+version_file = "dqi_mcmc/_version.py"
+fallback_version = "0.1.0"
+
+[project.urls]
+"Homepage"   = "https://github.com/matanninio/dqi-mcmc"
+"Repository" = "https://github.com/matanninio/dqi-mcmc"
+"Paper"      = "https://arxiv.org/abs/2607.28120"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pre-commit",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+lint.select = [
+    "UP",
+    "D",
+    "PT",
+    "C4",
+    "F",
+    "W605",
+    "I",
+    "E",
+]
+
+lint.ignore = [
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D105",
+    "D107",
+    "D203",
+    "D205",
+    "D212",
+    "D400",
+    "D401",
+    "D404",
+    "D415",
+    "D417",
+    "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["D104", "E402", "F401"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--strict-config",
+]
+markers = [
+    "requires_p7_rhs_file: skip if problems/opi/rhs_nsamples100_p7_r3.npy is absent",
+]

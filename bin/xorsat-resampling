@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2025 The DQI-MCMC Authors
+#
+# Run XOR-SAT resampling (collect τ_DQI values) for one (m, rhs-index, algorithm) combination.
+#
+# Usage:
+#   # Algorithm 1 (Continuous): single run, m=250, rhs-index=0
+#   bin/xorsat-resampling --m 250 --rhs-index 0 --algorithm 1 \
+#       --ell 12 --block-size 3 --output results_m250_alg1.jsonl
+#
+#   # Algorithm 2 (Restart): collect 10 good samples for m=100, rhs-index=3
+#   bin/xorsat-resampling --m 100 --rhs-index 3 --algorithm 2 \
+#       --ell 4 --block-size 3 --num-good-samples 10 --output results_m100_alg2.jsonl
+#
+#   # Sweep all 100 RHS indices, both algorithms
+#   for i in $(seq 0 99); do
+#       bin/xorsat-resampling --m 250 --rhs-index $i --algorithm 1 \
+#           --ell 12 --block-size 3 --output results_m250_alg1.jsonl
+#       bin/xorsat-resampling --m 250 --rhs-index $i --algorithm 2 \
+#           --ell 12 --block-size 3 --num-good-samples 10 \
+#           --output results_m250_alg2.jsonl
+#   done
+#
+# Key parameters:
+#   --m                Problem size (number of constraints)
+#   --rhs-index        RHS index 0-99
+#   --algorithm        1=Continuous, 2=Restart
+#   --ell              Polynomial degree
+#   --block-size       Gibbs block size (default: 3)
+#   --num-good-samples (Alg 2 only) good samples to collect per call (default: 10)
+#   --seed-offset      Added to the deterministic per-instance seed (default: 0)
+#   --max-samples      Safety limit: maximum Gibbs steps (default: 100M)
+#   --output           JSONL output file (one line appended per run)
+#
+# All arguments are forwarded verbatim to scripts/run_xorsat_resampling.py.
+# Run with --help for the full option list.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+
+exec "$ROOT/.venv/bin/python" "$ROOT/scripts/run_xorsat_resampling.py" "$@"
