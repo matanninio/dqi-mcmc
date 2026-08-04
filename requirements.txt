@@ -1,0 +1,7 @@
+numpy>=2
+scipy
+cython>=3.0
+gmpy2>=2.2
+h5py
+numba
+ldpc

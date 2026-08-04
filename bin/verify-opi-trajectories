@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 The DQI-MCMC Authors
+#
+# Run one OPI sampling batch and emit a single rhs_data JSONL line.
+# Records the full trajectory (new-best events) and the step at which predN is first surpassed.
+#
+# This is useful for inspecting the trajectory for a specific (p, rhs) pair
+# before committing to a full resampling sweep.
+#
+# Prerequisite: run generate-opi-rhs --p <p> once to create the RHS file.
+#
+# Usage:
+#   # Write trajectory to stdout (one JSONL line)
+#   bin/verify-opi-trajectories --p 13 --rhs 0 --batch-size 500000
+#
+#   # Append to a file
+#   bin/verify-opi-trajectories --p 13 --rhs 0 --output trajectories_p13.jsonl
+#
+#   # Custom block size and seed offset
+#   bin/verify-opi-trajectories --p 13 --rhs 3 --block-size 3 --seed-offset 1 \
+#       --output trajectories_p13.jsonl
+#
+# Key parameters:
+#   --p            Prime modulus
+#   --rhs          RHS index (0-based)
+#   --block-size   Variables updated per Gibbs step (default: 3, max: 3)
+#   --batch-size   Gibbs steps to run (default: 500 000)
+#   --seed-offset  Added to deterministic per-RHS seed (default: 0)
+#   --output       Append result to this file; omit to write to stdout
+#
+# All arguments are forwarded verbatim to scripts/verify_opi_trajectories.py.
+# Run with --help for the full option list.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+
+exec "$ROOT/.venv/bin/python" "$ROOT/scripts/verify_opi_trajectories.py" "$@"
