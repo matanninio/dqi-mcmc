@@ -157,7 +157,7 @@ for m in 100 250 500 750 1000 3000; do
 done
 ```
 
-Each file is named `rhs_nsamples100_m{m}.npy`.
+Each file is named `rhs_nsamples100_m{m}_p2_r1.npy`.
 
 **Full option reference:**
 
