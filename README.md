@@ -4,7 +4,7 @@ This repository contains the MCMC sampling code used to produce the numerical re
 
 > Gil-Fuster, E., Ninio, M., Bittel, L., Shimoni, Y., Eisert, J., Woerner, S., and Carrera Vázquez, A.
 > **Approximate sampling from decoded quantum interferometry via Markov chain Monte Carlo methods.**
-> *arXiv* (2025). [arXiv:2607.28120](https://arxiv.org/abs/2607.28120)
+> *arXiv* (2026). [arXiv:2607.28120](https://arxiv.org/abs/2607.28120)
 
 ## 1. Overview
 
@@ -602,13 +602,13 @@ data/                                  # Pre-computed paper results (repo root)
 If you use this code, please cite:
 
 ```bibtex
-@misc{gilfuster2025dqimcmc,
+@misc{gilfuster2026dqimcmc,
   author        = {Gil-Fuster, Elies and Ninio, Matan and Bittel, Lennart
                    and Shimoni, Yishai and Eisert, Jens and Woerner, Stefan
                    and {Carrera V\'{a}zquez}, Almudena},
   title         = {Approximate sampling from decoded quantum interferometry
                    via {Markov} chain {Monte Carlo} methods},
-  year          = {2025},
+  year          = {2026},
   eprint        = {2607.28120},
   archivePrefix = {arXiv},
   primaryClass  = {quant-ph},
