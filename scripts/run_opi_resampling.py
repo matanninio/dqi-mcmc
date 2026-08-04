@@ -13,9 +13,9 @@ A "good sample" is one where f(x) > predN = floor(n_predicted() * num_constraint
 Appends result lines to a JSONL output file. Writes a metadata line if the output is new.
 
 Usage:
-    # Algorithm 1, p=11, rhs-index=0
-    python run_opi_resampling.py --p 11 --rhs-index 0 --algorithm 1 \\
-        --num-bit-flips 10 --num-good-samples 10 --output results_p11_alg1.jsonl
+    # Algorithm 1, p=13, rhs-index=0
+    python run_opi_resampling.py --p 13 --rhs-index 0 --algorithm 1 \\
+        --num-bit-flips 10 --num-good-samples 10 --output results_p13_alg1.jsonl
 
     # Algorithm 2, p=13, rhs-index=3
     python run_opi_resampling.py --p 13 --rhs-index 3 --algorithm 2 \\

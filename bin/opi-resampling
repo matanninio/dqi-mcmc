@@ -12,13 +12,13 @@
 # Prerequisite: run generate-opi-rhs --p <p> once to create the RHS file.
 #
 # Usage:
-#   # Algorithm 1, p=11, rhs-index=0
-#   bin/opi-resampling --p 11 --rhs-index 0 --algorithm 1 \
+#   # Algorithm 1, p=13, rhs-index=0
+#   bin/opi-resampling --p 13 --rhs-index 0 --algorithm 1 \
 #       --num-bit-flips 10 --num-good-samples 10 \
-#       --output results_p11_alg1.jsonl
+#       --output results_p13_alg1.jsonl
 #
 #   # Sweep over all primes and rhs indices (Algorithm 2)
-#   for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+#   for p in 13 17 19 23 29 31 37 41 43 47 53; do
 #       for i in $(seq 0 9); do
 #           bin/opi-resampling --p $p --rhs-index $i --algorithm 2 \
 #               --num-bit-flips 10 --num-good-samples 10 \

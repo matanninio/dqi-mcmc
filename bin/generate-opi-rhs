@@ -5,8 +5,8 @@
 # Generate random OPI right-hand side vectors.
 #
 # Usage:
-#   bin/generate-opi-rhs --p 11
-#   bin/generate-opi-rhs --p 13 --n-samples 50 --seed 42
+#   bin/generate-opi-rhs --p 13
+#   bin/generate-opi-rhs --p 43 --n-samples 50 --seed 42
 #
 # All arguments are forwarded verbatim to scripts/generate_opi_rhs.py.
 # Run with --help for the full option list.

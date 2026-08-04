@@ -6,7 +6,7 @@
 #
 # Usage:
 #   bin/sample-opi --p 13 --idx 8
-#   bin/sample-opi --p 11 --idx 12
+#   bin/sample-opi --p 13 --idx 12
 #   bin/sample-opi --p 43 --idx 3 --max-steps 10000000
 #
 # Key parameters:

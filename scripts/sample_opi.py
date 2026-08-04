@@ -15,7 +15,7 @@ one good sample is found (n_satisfied > predN), then prints:
 
 Usage:
     python scripts/sample_opi.py --p 13 --idx 8
-    python scripts/sample_opi.py --p 11 --idx 12
+    python scripts/sample_opi.py --p 13 --idx 12
     python scripts/sample_opi.py --p 43 --idx 3 --max-steps 10000000
 
 Optional flags:

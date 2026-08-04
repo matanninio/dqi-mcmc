@@ -18,11 +18,11 @@ Progress goes to stderr.
 Seed formula (matching reference data): (hash((p, rhs_idx)) & 0x7FFFFFFF) + seed_offset
 
 Usage:
-    # p=11, rhs=0, batch-size=500000 -> stdout
-    python verify_opi_trajectories.py --p 11 --rhs 0 --batch-size 500000
+    # p=13, rhs=0, batch-size=500000 -> stdout
+    python verify_opi_trajectories.py --p 13 --rhs 0 --batch-size 500000
 
-    # p=11, rhs=0, write to file
-    python verify_opi_trajectories.py --p 11 --rhs 0 --output out.jsonl
+    # p=13, rhs=0, write to file
+    python verify_opi_trajectories.py --p 13 --rhs 0 --output out.jsonl
 """
 
 import argparse

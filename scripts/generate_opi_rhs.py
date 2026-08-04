@@ -11,11 +11,11 @@ Output Format:
     - Values: Random integers in range [0, p) WITHOUT repeats within each row.
 
 Usage Examples:
-    # Generate 100 samples with p=11 (default r=p//2=5)
-    python generate_opi_rhs.py --p 11
+    # Generate 100 samples with p=13 (default r=p//2=6)
+    python generate_opi_rhs.py --p 13
 
     # Generate with custom r and seed
-    python generate_opi_rhs.py --p 11 --r 5 --seed 42 --n-samples 50
+    python generate_opi_rhs.py --p 13 --r 6 --seed 42 --n-samples 50
 """
 
 import argparse

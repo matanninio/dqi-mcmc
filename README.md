@@ -129,7 +129,7 @@ All files are saved to `problems/opi/`.
 
 ```bash
 # Primes used in the paper
-for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+for p in 13 17 19 23 29 31 37 41 43 47 53; do
     bin/generate-opi-rhs -p $p
 done
 ```
@@ -299,7 +299,7 @@ Keep sampling continuously until N unique "good samples" are collected.
 
 ```bash
 for i in $(seq 0 9); do
-    for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+    for p in 13 17 19 23 29 31 37 41 43 47 53; do
         bin/opi-resampling -p $p -i $i -a 1 -g 10 -o results_alg1_p${p}.jsonl
     done
 done
@@ -311,7 +311,7 @@ For each of N iterations, restart from a fresh random state until one good sampl
 
 ```bash
 for i in $(seq 0 9); do
-    for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+    for p in 13 17 19 23 29 31 37 41 43 47 53; do
         bin/opi-resampling -p $p -i $i -a 2 -g 10 -o results_alg2_p${p}.jsonl
     done
 done
@@ -344,10 +344,10 @@ surpassed. Useful for quickly checking mixing behaviour before committing to a f
 
 ```bash
 # Print one trajectory line to stdout
-bin/verify-opi-trajectories -p 11 -i 0
+bin/verify-opi-trajectories -p 13 -i 0
 
 # Custom batch size, append to file
-bin/verify-opi-trajectories -p 11 -i 0 -b 1000000 -o trajectories_p11.jsonl
+bin/verify-opi-trajectories -p 13 -i 0 -b 1000000 -o trajectories_p13.jsonl
 ```
 
 **Full option reference:**
@@ -420,9 +420,9 @@ Each `trajectory` entry is `[tau, n_satisfied, wall_time_seconds]` at every new-
 
 ```json
 {
-  "type": "metadata", "p": 11, "n": 5, "r": 5,
-  "num_constraints": 10, "predicted_fraction": 0.732,
-  "predN": 7, "num_bit_flips": 10, "sampler_type": "BlockGibbsSampler",
+  "type": "metadata", "p": 13, "n": 6, "r": 6,
+  "num_constraints": 12, "predicted_fraction": 0.732,
+  "predN": 8, "num_bit_flips": 10, "sampler_type": "BlockGibbsSampler",
   "algorithm": 1, "seed_formula": "hash((p, rhs_idx)) & 0x7FFFFFFF + seed_offset"
 }
 ```
@@ -489,7 +489,7 @@ uv pip install "numba>=0.61"   # only needed on Python 3.13
 uv pip install -e ".[dev]"
 
 # Step 2 — generate problem files
-for p in 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+for p in 13 17 19 23 29 31 37 41 43 47 53; do
     bin/generate-opi-rhs -p $p
 done
 for m in 100 250 500 750 1000 3000; do
@@ -522,7 +522,7 @@ for m in 100 250 500 750 1000; do
 done
 
 # Step 6 — run OPI resampling (both algorithms)
-for p in 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67; do
+for p in 13 17 19 23 29 31 37 41 43 47 53; do
     for i in $(seq 0 9); do
         bin/opi-resampling -p $p -i $i -a 1 -g 10 -o results_opi_alg1_p${p}.jsonl
         bin/opi-resampling -p $p -i $i -a 2 -g 10 -o results_opi_alg2_p${p}.jsonl

@@ -12,10 +12,10 @@
 #
 # Usage:
 #   # Write trajectory to stdout (one JSONL line)
-#   bin/verify-opi-trajectories --p 11 --rhs 0 --batch-size 500000
+#   bin/verify-opi-trajectories --p 13 --rhs 0 --batch-size 500000
 #
 #   # Append to a file
-#   bin/verify-opi-trajectories --p 11 --rhs 0 --output trajectories_p11.jsonl
+#   bin/verify-opi-trajectories --p 13 --rhs 0 --output trajectories_p13.jsonl
 #
 #   # Custom block size and seed offset
 #   bin/verify-opi-trajectories --p 13 --rhs 3 --block-size 3 --seed-offset 1 \
