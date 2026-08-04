@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2025 The DQI-MCMC Authors
+# Copyright 2026 The DQI-MCMC Authors
 #
 # Run one OPI sampling batch and emit a single rhs_data JSONL line.
 # Records the full trajectory (new-best events) and the step at which predN is first surpassed.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2025 The DQI-MCMC Authors
+# Copyright 2026 The DQI-MCMC Authors
 #
 # Pre-compute and cache the XOR-SAT lookup table for a given m.
 # Must be run once per (m, ell) before running xorsat-sampling.

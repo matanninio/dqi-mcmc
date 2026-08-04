@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2025 The DQI-MCMC Authors
+# Copyright 2026 The DQI-MCMC Authors
 
 """Shared pytest fixtures and markers for the DQI-MCMC paper-release test suite."""
 

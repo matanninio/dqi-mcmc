@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2025 The DQI-MCMC Authors
+# Copyright 2026 The DQI-MCMC Authors
 
 r"""
 Run XOR-SAT Block Gibbs sampling for one (m, rhs-index) combination.
