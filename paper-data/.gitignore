@@ -1,0 +1,2 @@
+# Un-ignore JSONL files in this directory — these are committed paper result data
+!*.jsonl
