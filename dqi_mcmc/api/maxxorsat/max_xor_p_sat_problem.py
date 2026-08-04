@@ -134,7 +134,7 @@ class MaxXorPSatProblem:
 
     [1] Gil-Fuster, E., Ninio, M., Bittel, L., Shimoni, Y., Eisert, J., Woerner, S., and Carrera Vázquez, A.
         Approximate sampling from decoded quantum interferometry via Markov chain Monte Carlo methods.
-        arXiv (2025). https://arxiv.org/abs/2607.28120
+        arXiv (2026). https://arxiv.org/abs/2607.28120
 
     """
 
