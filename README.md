@@ -129,7 +129,7 @@ All files are saved to `problems/opi/`.
 
 ```bash
 # Primes used in the paper
-for p in 13 17 19 23 29 31 37 41 43 47 53; do
+for p in 13 17 19 23 29 31 37 41 43 47; do
     bin/generate-opi-rhs -p $p
 done
 ```
@@ -299,7 +299,7 @@ Keep sampling continuously until N unique "good samples" are collected.
 
 ```bash
 for i in $(seq 0 9); do
-    for p in 13 17 19 23 29 31 37 41 43 47 53; do
+    for p in 13 17 19 23 29 31 37 41 43 47; do
         bin/opi-resampling -p $p -i $i -a 1 -g 10 -o results_alg1_p${p}.jsonl
     done
 done
@@ -311,7 +311,7 @@ For each of N iterations, restart from a fresh random state until one good sampl
 
 ```bash
 for i in $(seq 0 9); do
-    for p in 13 17 19 23 29 31 37 41 43 47 53; do
+    for p in 13 17 19 23 29 31 37 41 43 47; do
         bin/opi-resampling -p $p -i $i -a 2 -g 10 -o results_alg2_p${p}.jsonl
     done
 done
@@ -489,7 +489,7 @@ uv pip install "numba>=0.61"   # only needed on Python 3.13
 uv pip install -e ".[dev]"
 
 # Step 2 — generate problem files
-for p in 13 17 19 23 29 31 37 41 43 47 53; do
+for p in 13 17 19 23 29 31 37 41 43 47; do
     bin/generate-opi-rhs -p $p
 done
 for m in 100 250 500 750 1000 3000; do
@@ -522,7 +522,7 @@ for m in 100 250 500 750 1000; do
 done
 
 # Step 6 — run OPI resampling (both algorithms)
-for p in 13 17 19 23 29 31 37 41 43 47 53; do
+for p in 13 17 19 23 29 31 37 41 43 47; do
     for i in $(seq 0 9); do
         bin/opi-resampling -p $p -i $i -a 1 -g 10 -o results_opi_alg1_p${p}.jsonl
         bin/opi-resampling -p $p -i $i -a 2 -g 10 -o results_opi_alg2_p${p}.jsonl
