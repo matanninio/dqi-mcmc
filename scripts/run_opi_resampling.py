@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The DQI-MCMC Authors
+# Copyright 2026 IBM Corporation
 
 r"""
 Run OPI resampling experiments for one (p, rhs-index, algorithm) combination.
