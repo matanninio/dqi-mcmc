@@ -32,7 +32,9 @@ def dtype_for_p(p: int) -> type:
     return np.uint32
 
 
-def generate_and_save(path: str | Path, n_samples: int, r: int, p: int, seed: int = 123) -> None:
+def generate_and_save(
+    path: str | Path, n_samples: int, r: int, p: int, seed: int = 123
+) -> None:
     """
     Generate and save random OPI right-hand side vectors.
 
@@ -45,7 +47,9 @@ def generate_and_save(path: str | Path, n_samples: int, r: int, p: int, seed: in
 
     """
     if r > p:
-        raise ValueError(f"Cannot sample {r} unique values from range [0, {p}). Got r={r}, p={p}")
+        raise ValueError(
+            f"Cannot sample {r} unique values from range [0, {p}). Got r={r}, p={p}"
+        )
 
     rng = np.random.default_rng(seed)
     dt = dtype_for_p(p)
@@ -76,7 +80,9 @@ def parse_args():
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    parser.add_argument("-p", "--p", type=int, required=True, help="Prime field size (required)")
+    parser.add_argument(
+        "-p", "--p", type=int, required=True, help="Prime field size (required)"
+    )
 
     parser.add_argument(
         "-r",
@@ -127,7 +133,10 @@ def main():
         # Default path relative to this script's grandparent (paper-release/)
         BASE_DIR = Path(__file__).resolve().parents[1]
         filename = (
-            BASE_DIR / "problems" / "opi" / f"rhs_nsamples{args.n_samples}_p{args.p}_r{r}.npy"
+            BASE_DIR
+            / "problems"
+            / "opi"
+            / f"rhs_nsamples{args.n_samples}_p{args.p}_r{r}.npy"
         )
 
     generate_and_save(

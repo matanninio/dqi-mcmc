@@ -29,8 +29,12 @@ class TestXorSatGibbsSmoke:
         from dqi_mcmc.api.block_gibbs_sampler import BlockGibbsSamplerOptimized
 
         sampler = BlockGibbsSamplerOptimized(tiny_xorsat_problem)
-        _, v1 = sampler.sample_with_values(30, seed=42, block_size=1, num_burn_in_samples=0)
-        _, v2 = sampler.sample_with_values(30, seed=42, block_size=1, num_burn_in_samples=0)
+        _, v1 = sampler.sample_with_values(
+            30, seed=42, block_size=1, num_burn_in_samples=0
+        )
+        _, v2 = sampler.sample_with_values(
+            30, seed=42, block_size=1, num_burn_in_samples=0
+        )
         np.testing.assert_array_equal(v1[:, 1], v2[:, 1])
 
     def test_golden_fx_values(self, tiny_xorsat_problem):
@@ -38,5 +42,7 @@ class TestXorSatGibbsSmoke:
         from dqi_mcmc.api.block_gibbs_sampler import BlockGibbsSamplerOptimized
 
         sampler = BlockGibbsSamplerOptimized(tiny_xorsat_problem)
-        _, values = sampler.sample_with_values(20, seed=42, block_size=1, num_burn_in_samples=0)
+        _, values = sampler.sample_with_values(
+            20, seed=42, block_size=1, num_burn_in_samples=0
+        )
         np.testing.assert_array_equal(values[:, 1], EXPECTED_XORSAT_FX)

@@ -32,7 +32,9 @@ def dtype_for_p(p: int) -> type:
     return np.uint32
 
 
-def generate_and_save(path: str | Path, n_samples: int, m: int, seed: int = 123) -> None:
+def generate_and_save(
+    path: str | Path, n_samples: int, m: int, seed: int = 123
+) -> None:
     """
     Generate and save random XOR-SAT right-hand side vectors.
 
