@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [
-    { name = "The DQI-MCMC Authors" }
+    { name = "IBM Corporation" }
 ]
 
 classifiers = [
