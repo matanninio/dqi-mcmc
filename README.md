@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 IBM Corporation
+
 # DQI-MCMC: Sampling Algorithms for Decoded Quantum Interferometry Experiments
 
 > [!NOTE]
