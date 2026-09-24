@@ -1,4 +1,12 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 IBM Corporation
+
 # DQI-MCMC: Sampling Algorithms for Decoded Quantum Interferometry Experiments
+
+> [!NOTE]
+> This repository is associated to a [research publication](https://arxiv.org/abs/2607.28120) and
+> the code here is not actively maintained.
+> This is not an officially supported IBM Quantum software.
 
 This repository contains the MCMC sampling code used to produce the numerical results in:
 

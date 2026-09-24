@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 IBM Corporation
+
 [build-system]
 requires = ["setuptools", "setuptools_scm", "cython>=3.0", "numpy>=2"]
 build-backend = "setuptools.build_meta"
@@ -10,7 +13,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [
-    { name = "The DQI-MCMC Authors" }
+    { name = "IBM Corporation" }
 ]
 
 classifiers = [

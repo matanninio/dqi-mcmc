@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The DQI-MCMC Authors
+# Copyright 2026 IBM Corporation
 
 """Protocol interface for SAT-like problems that can be sampled with MCMC."""
 

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The DQI-MCMC Authors
+# Copyright 2026 IBM Corporation
 
 r"""
 Collect N good OPI samples and print a table of results.

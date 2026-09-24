@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The DQI-MCMC Authors
+# Copyright 2026 IBM Corporation
 
 """
 CLI scripts for DQI-MCMC experiments.
