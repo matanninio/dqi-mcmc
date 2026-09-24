@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2025 IBM Corporation
+# Copyright 2026 IBM Corporation
 
 """Setup script for building Cython extensions."""
 
