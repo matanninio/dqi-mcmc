@@ -46,7 +46,9 @@ def parse_args():
     )
 
     parser.add_argument("-p", "--p", type=int, required=True, help="Prime modulus")
-    parser.add_argument("-i", "--rhs-index", type=int, required=True, help="Single RHS index (0-9)")
+    parser.add_argument(
+        "-i", "--rhs-index", type=int, required=True, help="Single RHS index (0-9)"
+    )
     parser.add_argument(
         "-a",
         "--algorithm",
@@ -119,7 +121,9 @@ def load_problem(p: int, n_factor: int, rhs_idx: int, base_dir: Path) -> tuple:
     return problem, solutions_vectors, m, predicted, predN
 
 
-def initialize_state(sampler: BlockGibbsSampler, problem: MaxOPIProblem, x: np.ndarray, rng=None):
+def initialize_state(
+    sampler: BlockGibbsSampler, problem: MaxOPIProblem, x: np.ndarray, rng=None
+):
     """Initialize sampling state variables."""
     poly_vals = sampler._compute_poly_vals(x)
     n_satisfied = np.sum(sampler.v_mask[np.arange(sampler.m), poly_vals])
@@ -167,13 +171,18 @@ def run_algorithm_1_continuous(
     x = rng.integers(0, sampler.p, size=sampler.x_length, dtype=np.int64)
     x, poly_vals, value, fx = initialize_state(sampler, problem, x, rng)
 
-    print(f"  Algorithm 1 (Continuous): Collecting {num_good_samples} UNIQUE good samples...")
+    print(
+        f"  Algorithm 1 (Continuous): Collecting {num_good_samples} UNIQUE good samples..."
+    )
 
     # Start timing from the beginning - DO NOT RESET during the run
     cpu_time_start = time.process_time()
     wall_time_start = time.time()
 
-    while len(unique_solutions) < num_good_samples and total_samples < max_samples_per_attempt:
+    while (
+        len(unique_solutions) < num_good_samples
+        and total_samples < max_samples_per_attempt
+    ):
         # Take one Gibbs step
         x, poly_vals, value, fx = sampler._one_step(
             rng=rng,
@@ -196,7 +205,9 @@ def run_algorithm_1_continuous(
             best_n_sat = n_satisfied
             best_x = x.copy()
             wall_time_elapsed = time.time() - wall_time_start
-            trajectory.append([total_samples, int(n_satisfied), round(wall_time_elapsed, 2)])
+            trajectory.append(
+                [total_samples, int(n_satisfied), round(wall_time_elapsed, 2)]
+            )
 
         if n_satisfied > predN:
             x_tuple = tuple(x.tolist())
@@ -271,7 +282,9 @@ def run_algorithm_2_restart(
 
     results = []
 
-    print(f"  Algorithm 2 (Restart): Collecting {num_good_samples} good samples with restarts...")
+    print(
+        f"  Algorithm 2 (Restart): Collecting {num_good_samples} good samples with restarts..."
+    )
 
     # Algorithm 2 design:
     # - Each restart uses a fresh RNG seeded with base_seed + iteration + 1.
@@ -372,7 +385,9 @@ def main():
     base_seed = make_per_rhs_seed(p, rhs_idx, args.seed_offset)
     rng = np.random.default_rng(base_seed)
 
-    print(f"OPI resampling: p={p}, rhs_idx={rhs_idx}, algorithm={args.algorithm}, seed={base_seed}")
+    print(
+        f"OPI resampling: p={p}, rhs_idx={rhs_idx}, algorithm={args.algorithm}, seed={base_seed}"
+    )
 
     # Load problem
     problem, solutions_vectors, m, predicted, predN = load_problem(

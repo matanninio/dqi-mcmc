@@ -175,7 +175,9 @@ def _compute_k2_step(
     second_val_chosen = chosen_idx % p
 
     # Compute final satisfaction count
-    poly_vals_final = poly_vals + first_val_chosen * gamma_col0 + second_val_chosen * gamma_col1
+    poly_vals_final = (
+        poly_vals + first_val_chosen * gamma_col0 + second_val_chosen * gamma_col1
+    )
     poly_vals_final %= p
     n_satisfied_final = 0
     for i in range(m):
@@ -348,7 +350,9 @@ def _compute_block_gibbs_step_core(
         poly_vals_new = poly_vals_normalized.copy()
         if chosen_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + chosen_val * gamma_powers_subset[i, 0]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + chosen_val * gamma_powers_subset[i, 0]
+                ) % p
 
         fx_new = 2 * n_satisfied - m
         chosen_idx = chosen_val
@@ -375,10 +379,14 @@ def _compute_block_gibbs_step_core(
         poly_vals_new = poly_vals_normalized.copy()
         if first_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + first_val * gamma_powers_subset[i, 0]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + first_val * gamma_powers_subset[i, 0]
+                ) % p
         if second_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + second_val * gamma_powers_subset[i, 1]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + second_val * gamma_powers_subset[i, 1]
+                ) % p
 
         fx_new = 2 * n_satisfied - m
         chosen_idx = first_val * p + second_val
@@ -413,13 +421,19 @@ def _compute_block_gibbs_step_core(
         poly_vals_new = poly_vals_normalized.copy()
         if first_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + first_val * gamma_powers_subset[i, 0]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + first_val * gamma_powers_subset[i, 0]
+                ) % p
         if second_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + second_val * gamma_powers_subset[i, 1]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + second_val * gamma_powers_subset[i, 1]
+                ) % p
         if third_val != 0:
             for i in range(m):
-                poly_vals_new[i] = (poly_vals_new[i] + third_val * gamma_powers_subset[i, 2]) % p
+                poly_vals_new[i] = (
+                    poly_vals_new[i] + third_val * gamma_powers_subset[i, 2]
+                ) % p
 
         fx_new = 2 * n_satisfied - m
         chosen_idx = first_val * p * p + second_val * p + third_val
@@ -508,7 +522,9 @@ class BlockGibbsSampler:
 
         """
         return {
-            "permutation": self._permutation.tolist() if self._permutation is not None else None,
+            "permutation": (
+                self._permutation.tolist() if self._permutation is not None else None
+            ),
             "permutation_idx": self._permutation_idx,
         }
 
@@ -783,7 +799,9 @@ class BlockGibbsSampler:
         """
         # Select indices to update
         if block_strategy == "random":
-            indices = rng.choice(self.x_length, size=block_size, replace=False).astype(np.int64)
+            indices = rng.choice(self.x_length, size=block_size, replace=False).astype(
+                np.int64
+            )
         elif block_strategy == "sequential":
             # Extract next block from permutation
             end_idx = min(self._permutation_idx + block_size, self.x_length)
@@ -808,7 +826,9 @@ class BlockGibbsSampler:
             # If we don't have enough variables left in this epoch simply sample a smaller block
             self._permutation_idx = end_idx
         else:
-            raise NotImplementedError(f"Block strategy {block_strategy} not implemented")
+            raise NotImplementedError(
+                f"Block strategy {block_strategy} not implemented"
+            )
 
         indices.sort()
 

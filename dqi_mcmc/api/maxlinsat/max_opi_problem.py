@@ -261,7 +261,9 @@ class MaxOPIProblem:
         self.set_optimal_lookup_table(use_cache=use_cache)
 
         # Pre-compute all powers of gamma needed for polynomial evaluation
-        self.gamma_powers = np.zeros((self.num_constraints, self.num_variables), dtype=np.int64)
+        self.gamma_powers = np.zeros(
+            (self.num_constraints, self.num_variables), dtype=np.int64
+        )
         t = 1  # gamma^0
         for i in range(self.num_constraints):
             power = 1  # t^0

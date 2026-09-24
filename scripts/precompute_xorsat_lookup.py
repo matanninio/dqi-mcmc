@@ -53,7 +53,9 @@ def parse_args():
         help="Polynomial degree (default: (n+1)//2 where n is number of variables)",
     )
 
-    parser.add_argument("--force", action="store_true", help="Overwrite existing cached table")
+    parser.add_argument(
+        "--force", action="store_true", help="Overwrite existing cached table"
+    )
 
     return parser.parse_args()
 

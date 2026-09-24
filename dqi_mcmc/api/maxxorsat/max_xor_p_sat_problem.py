@@ -67,7 +67,9 @@ def compute_optimal_lookup_table_xorsat(
     # =============================================
     ks = np.arange(1, ell + 1, dtype=np.float64)
     off_diag = np.sqrt(ks * (m - ks + 1.0))
-    diag = np.zeros(ell + 1, dtype=np.float64)  # for maxxorsat the diagonal is all zeroes
+    diag = np.zeros(
+        ell + 1, dtype=np.float64
+    )  # for maxxorsat the diagonal is all zeroes
     # get only the largest eigenpair
     _, w_k = eigh_tridiagonal(diag, off_diag, select="i", select_range=(ell, ell))
     w_k = w_k[:, 0]
@@ -286,7 +288,9 @@ class MaxXorPSatProblem:
         n_match = self.n_satisfied(x)
         fx = 2 * n_match - self.num_constraints
         if isinstance(fx, np.ndarray):
-            return int(fx) if fx.ndim == 0 or (fx.ndim == 1 and fx.shape[0] == 1) else fx
+            return (
+                int(fx) if fx.ndim == 0 or (fx.ndim == 1 and fx.shape[0] == 1) else fx
+            )
         else:
             return int(fx)
 
@@ -383,7 +387,9 @@ class MaxXorPSatProblem:
         ks = np.arange(1, self.ell + 1, dtype=np.float64)
         off_diag = np.sqrt(ks * (m - ks + 1.0))
         diag = np.zeros(self.ell + 1, dtype=np.float64)
-        _, w_k = eigh_tridiagonal(diag, off_diag, select="i", select_range=(self.ell, self.ell))
+        _, w_k = eigh_tridiagonal(
+            diag, off_diag, select="i", select_range=(self.ell, self.ell)
+        )
         w_k = w_k[:, 0]
         inner = np.dot(off_diag, w_k[:-1] * w_k[1:])
         return 0.5 + inner / m

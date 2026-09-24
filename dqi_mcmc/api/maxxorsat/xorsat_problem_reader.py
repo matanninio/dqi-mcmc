@@ -58,7 +58,9 @@ def read_matrix_from_tsv(file_path: str | Path, dtype=int) -> csr_matrix:
             i.append(x)
             j.append(y)
 
-    sparse_array = csr_matrix((data, (i, j)), shape=(max(i) + 1, max(j) + 1), dtype=dtype)
+    sparse_array = csr_matrix(
+        (data, (i, j)), shape=(max(i) + 1, max(j) + 1), dtype=dtype
+    )
     return sparse_array
 
 
@@ -103,7 +105,9 @@ def read_problem(m: int, v_index: int = 0) -> tuple[csr_matrix, "NDArray[np.int_
     """
     if m not in _problem_files:
         available = sorted(_problem_files.keys())
-        raise KeyError(f"Problem size m={m} not available. " f"Available sizes: {available}")
+        raise KeyError(
+            f"Problem size m={m} not available. " f"Available sizes: {available}"
+        )
 
     # Read the constraint matrix
     matrix_path = get_problem_filepath(m)
@@ -120,7 +124,8 @@ def read_problem(m: int, v_index: int = 0) -> tuple[csr_matrix, "NDArray[np.int_
     # Select the specified vector
     if v_index < 0 or v_index >= len(rhs_table):
         raise IndexError(
-            f"v_index={v_index} out of range. " f"Available indices: 0-{len(rhs_table)-1}"
+            f"v_index={v_index} out of range. "
+            f"Available indices: 0-{len(rhs_table)-1}"
         )
 
     v = rhs_table[v_index]
