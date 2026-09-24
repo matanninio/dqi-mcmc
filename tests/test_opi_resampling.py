@@ -45,7 +45,9 @@ class TestOpiResamplingSmoke:
         """Algorithm 1 returns a list with the expected keys."""
         from scripts.run_opi_resampling import run_algorithm_1_continuous
 
-        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(p11_rhs_file)
+        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(
+            p11_rhs_file
+        )
 
         results = run_algorithm_1_continuous(
             rhs_idx=0,
@@ -69,7 +71,9 @@ class TestOpiResamplingSmoke:
         """Algorithm 2 returns a list with the expected keys."""
         from scripts.run_opi_resampling import run_algorithm_2_restart
 
-        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(p11_rhs_file)
+        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(
+            p11_rhs_file
+        )
 
         results = run_algorithm_2_restart(
             rhs_idx=0,
@@ -97,7 +101,9 @@ class TestOpiResamplingGolden:
         """Algorithm 1 tau_dqi values must reproduce data/opi/multisampling_gibbs3_p11_alg1_no_warmup.jsonl."""
         from scripts.run_opi_resampling import run_algorithm_1_continuous
 
-        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(p11_rhs_file)
+        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(
+            p11_rhs_file
+        )
         results = run_algorithm_1_continuous(
             rhs_idx=0,
             problem=problem,
@@ -117,7 +123,9 @@ class TestOpiResamplingGolden:
         """Algorithm 2 tau_dqi values must reproduce data/opi/multisampling_gibbs3_p11_alg2_no_warmup.jsonl."""
         from scripts.run_opi_resampling import run_algorithm_2_restart
 
-        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(p11_rhs_file)
+        problem, sampler, solutions_vectors, predN = _make_problem_and_sampler(
+            p11_rhs_file
+        )
         results = run_algorithm_2_restart(
             rhs_idx=0,
             problem=problem,

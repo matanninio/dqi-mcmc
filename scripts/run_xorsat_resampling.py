@@ -47,7 +47,9 @@ def parse_args():
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("-m", "--m", type=int, required=True, help="Problem size")
-    parser.add_argument("-i", "--rhs-index", type=int, required=True, help="RHS index (0-99)")
+    parser.add_argument(
+        "-i", "--rhs-index", type=int, required=True, help="RHS index (0-99)"
+    )
     parser.add_argument(
         "-a",
         "--algorithm",
@@ -56,8 +58,12 @@ def parse_args():
         required=True,
         help="Algorithm: 1=Continuous, 2=Restart",
     )
-    parser.add_argument("-l", "--ell", type=int, required=True, help="Polynomial degree")
-    parser.add_argument("--block-size", type=int, default=3, help="Gibbs block size (default: 3)")
+    parser.add_argument(
+        "-l", "--ell", type=int, required=True, help="Polynomial degree"
+    )
+    parser.add_argument(
+        "--block-size", type=int, default=3, help="Gibbs block size (default: 3)"
+    )
     parser.add_argument(
         "-g",
         "--num-good-samples",
@@ -117,7 +123,13 @@ def _run_until_predicted(
         run = min(batch, max_samples - tau)
         for _ in range(run):
             x, bx, value, fx_val = sampler._one_step_optimized(
-                rng, x, bx, value, fx_val, block_size=block_size, block_strategy="random"
+                rng,
+                x,
+                bx,
+                value,
+                fx_val,
+                block_size=block_size,
+                block_strategy="random",
             )
             tau += 1
             n_sat = int((fx_val + m) // 2)
@@ -159,13 +171,19 @@ def main():
 
     if args.algorithm == 1:
         rng = np.random.default_rng(base_seed)
-        result = _run_until_predicted(problem, rng, args.block_size, predicted, args.max_samples)
+        result = _run_until_predicted(
+            problem, rng, args.block_size, predicted, args.max_samples
+        )
         if result is None:
-            print(f"  WARNING: max_samples={args.max_samples} exhausted without reaching predicted")
+            print(
+                f"  WARNING: max_samples={args.max_samples} exhausted without reaching predicted"
+            )
             return
 
         tau_dqi, obs, trajectory = result
-        print(f"  tau_dqi={tau_dqi}, fx={obs['fx']}, wt_x={obs['wt_x']}, wt_bx={obs['wt_bx']}")
+        print(
+            f"  tau_dqi={tau_dqi}, fx={obs['fx']}, wt_x={obs['wt_x']}, wt_bx={obs['wt_bx']}"
+        )
 
         record = {
             "type": "rhs_data",
@@ -190,7 +208,9 @@ def main():
                 problem, rng, args.block_size, predicted, args.max_samples
             )
             if result is None:
-                print(f"  WARNING: attempt {attempt + 1} exhausted max_samples without success")
+                print(
+                    f"  WARNING: attempt {attempt + 1} exhausted max_samples without success"
+                )
                 records_obs.append(None)
                 records_traj.append([])
             else:

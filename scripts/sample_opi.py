@@ -85,7 +85,9 @@ def main():
 
     solutions_vectors = np.load(rhs_file)
     if rhs_idx >= len(solutions_vectors):
-        sys.exit(f"idx={rhs_idx} out of range — RHS file has {len(solutions_vectors)} entries.")
+        sys.exit(
+            f"idx={rhs_idx} out of range — RHS file has {len(solutions_vectors)} entries."
+        )
 
     v = solutions_vectors[rhs_idx]
     problem = MaxOPIProblem(p=p, v=v, num_variables=n)
@@ -159,7 +161,9 @@ def main():
     print()
     print("Trajectory  [step, n_satisfied]:")
     for entry in trajectory:
-        marker = " ← first above predN" if entry[1] > predN and entry[0] == tau_dqi else ""
+        marker = (
+            " ← first above predN" if entry[1] > predN and entry[0] == tau_dqi else ""
+        )
         print(f"  step {entry[0]:>8,} :  n_sat = {entry[1]}{marker}")
     print("─" * 52)
 

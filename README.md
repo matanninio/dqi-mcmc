@@ -304,6 +304,7 @@ Keep sampling continuously until N unique "good samples" are collected.
 
 ```bash
 for i in $(seq 0 9); do
+
     for p in 13 17 19 23 29 31 37 41 43 47; do
         bin/opi-resampling -p $p -i $i -a 1 -g 10 -o results_alg1_p${p}.jsonl
     done
@@ -494,6 +495,7 @@ uv pip install "numba>=0.61"   # only needed on Python 3.13
 uv pip install -e ".[dev]"
 
 # Step 2 — generate problem files
+
 for p in 13 17 19 23 29 31 37 41 43 47; do
     bin/generate-opi-rhs -p $p
 done

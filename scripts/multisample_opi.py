@@ -57,21 +57,33 @@ def parse_args():
         help="Algorithm 2: independent restart per sample",
     )
     alg.add_argument(
-        "--algorithm", dest="algorithm", type=int, choices=[1, 2], help="Algorithm number (1 or 2)"
+        "--algorithm",
+        dest="algorithm",
+        type=int,
+        choices=[1, 2],
+        help="Algorithm number (1 or 2)",
     )
 
     parser.add_argument("--p", type=int, required=True, help="Prime modulus")
     parser.add_argument("--idx", type=int, required=True, help="RHS index (0-based)")
     parser.add_argument(
-        "--num-samples", type=int, required=True, help="Number of good samples to collect"
+        "--num-samples",
+        type=int,
+        required=True,
+        help="Number of good samples to collect",
     )
     parser.add_argument(
         "--num-bit-flips", type=int, default=3, help="Gibbs block size (default: 3)"
     )
     parser.add_argument(
-        "--seed-offset", type=int, default=0, help="Added to the deterministic seed (default: 0)"
+        "--seed-offset",
+        type=int,
+        default=0,
+        help="Added to the deterministic seed (default: 0)",
     )
-    parser.add_argument("--n-factor", type=int, default=2, help="n = p // n_factor (default: 2)")
+    parser.add_argument(
+        "--n-factor", type=int, default=2, help="n = p // n_factor (default: 2)"
+    )
     parser.add_argument(
         "--max-steps",
         type=int,
@@ -87,7 +99,9 @@ def main():
     base_dir = Path(__file__).resolve().parents[1]
 
     base_seed = make_per_rhs_seed(p, rhs_idx, args.seed_offset)
-    problem, solutions_vectors, m, _, predN = load_problem(p, args.n_factor, rhs_idx, base_dir)
+    problem, solutions_vectors, m, _, predN = load_problem(
+        p, args.n_factor, rhs_idx, base_dir
+    )
     block_size = min(args.num_bit_flips, problem.num_variables, 3)
     sampler = BlockGibbsSampler(problem)
 
@@ -121,7 +135,9 @@ def main():
                 if x_tuple not in unique_solutions:
                     unique_solutions.add(x_tuple)
                     sample_num = len(unique_solutions)
-                    print(f"1\t{rhs_idx}\t{sample_num}\t{total_steps}\t{n_sat}\t{list(x_tuple)}")
+                    print(
+                        f"1\t{rhs_idx}\t{sample_num}\t{total_steps}\t{n_sat}\t{list(x_tuple)}"
+                    )
 
     else:
         # ── Algorithm 2: independent restart per sample ───────────────────────
@@ -157,9 +173,13 @@ def main():
 
             if first_hit is not None:
                 step, n_sat, x_hit = first_hit
-                print(f"2\t{rhs_idx}\t{iteration + 1}\t{step}\t{n_sat}\t{x_hit.tolist()}")
+                print(
+                    f"2\t{rhs_idx}\t{iteration + 1}\t{step}\t{n_sat}\t{x_hit.tolist()}"
+                )
             else:
-                print(f"2\t{rhs_idx}\t{iteration + 1}\tNOT_FOUND\t-\t-", file=sys.stderr)
+                print(
+                    f"2\t{rhs_idx}\t{iteration + 1}\tNOT_FOUND\t-\t-", file=sys.stderr
+                )
 
 
 if __name__ == "__main__":

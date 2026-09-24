@@ -126,7 +126,13 @@ def _run_until_predicted(problem, rng, block_size, predicted, max_samples=10_000
         run = min(batch, max_samples - tau)
         for _ in range(run):
             x, bx, value, fx_val = sampler._one_step_optimized(
-                rng, x, bx, value, fx_val, block_size=block_size, block_strategy="random"
+                rng,
+                x,
+                bx,
+                value,
+                fx_val,
+                block_size=block_size,
+                block_strategy="random",
             )
             tau += 1
             n_sat = int((fx_val + m) // 2)
@@ -168,7 +174,9 @@ def test_alg1_xorsat_golden_m100(rhs_idx):
     rng = np.random.default_rng(base_seed)
 
     result = _run_until_predicted(problem, rng, block_size=3, predicted=predicted)
-    assert result is not None, "max_samples exhausted — did not reach predicted threshold"
+    assert (
+        result is not None
+    ), "max_samples exhausted — did not reach predicted threshold"
 
     tau_dqi, obs = result
     assert (
@@ -262,7 +270,9 @@ def test_alg1_data_structure():
         assert len(lines) >= 2, f"{path.name}: expected at least 2 lines (meta + data)"
 
         meta = lines[0]
-        assert meta.get("type") == "metadata", f"{path.name}: first line must be metadata"
+        assert (
+            meta.get("type") == "metadata"
+        ), f"{path.name}: first line must be metadata"
         for field in (
             "ell",
             "num_variables",
@@ -277,7 +287,9 @@ def test_alg1_data_structure():
         for row in lines[1:]:
             assert row.get("type") == "rhs_data", f"{path.name}: unexpected row type"
             assert row["tau_dqi"] > 0, f"{path.name}: tau_dqi must be positive"
-            assert len(row["trajectory"]) >= 1, f"{path.name}: trajectory must be non-empty"
+            assert (
+                len(row["trajectory"]) >= 1
+            ), f"{path.name}: trajectory must be non-empty"
             obs = row["observables"]
             assert set(obs.keys()) == {
                 "fx",
@@ -307,7 +319,9 @@ def test_alg2_data_structure():
         assert len(lines) >= 2, f"{path.name}: expected at least 2 lines (meta + data)"
 
         meta = lines[0]
-        assert meta.get("type") == "metadata", f"{path.name}: first line must be metadata"
+        assert (
+            meta.get("type") == "metadata"
+        ), f"{path.name}: first line must be metadata"
         assert (
             "num_good_samples_per_rhs" in meta
         ), f"{path.name}: metadata missing 'num_good_samples_per_rhs'"
@@ -316,7 +330,9 @@ def test_alg2_data_structure():
         for row in lines[1:]:
             assert row.get("type") == "rhs_data", f"{path.name}: unexpected row type"
             obs_list = row["observables"]
-            assert isinstance(obs_list, list), f"{path.name}: observables must be a list"
+            assert isinstance(
+                obs_list, list
+            ), f"{path.name}: observables must be a list"
             assert len(obs_list) == expected_n_obs, (
                 f"{path.name}: rhs_idx={row['rhs_idx']}: "
                 f"expected {expected_n_obs} observables, got {len(obs_list)}"
@@ -353,7 +369,8 @@ def test_alg1_m100_predicted_fraction_consistent():
     computed_predicted = problem.n_predicted()
 
     assert abs(computed_predicted - stored_predicted) < 1e-10, (
-        f"predicted_fraction mismatch: stored={stored_predicted}, " f"computed={computed_predicted}"
+        f"predicted_fraction mismatch: stored={stored_predicted}, "
+        f"computed={computed_predicted}"
     )
 
 
@@ -381,5 +398,6 @@ def test_alg2_m100_predicted_fraction_consistent():
     computed_predicted = problem.n_predicted()
 
     assert abs(computed_predicted - stored_predicted) < 1e-10, (
-        f"predicted_fraction mismatch: stored={stored_predicted}, " f"computed={computed_predicted}"
+        f"predicted_fraction mismatch: stored={stored_predicted}, "
+        f"computed={computed_predicted}"
     )

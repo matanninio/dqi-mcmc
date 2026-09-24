@@ -92,7 +92,8 @@ def main():
     rhs_file = base_dir / "problems" / "opi" / f"rhs_nsamples100_p{p}_r{r}.npy"
     if not rhs_file.exists():
         sys.exit(
-            f"RHS file not found: {rhs_file}\n" f"Run: python scripts/generate_opi_rhs.py --p {p}"
+            f"RHS file not found: {rhs_file}\n"
+            f"Run: python scripts/generate_opi_rhs.py --p {p}"
         )
 
     solutions_vectors = np.load(rhs_file)
@@ -161,7 +162,8 @@ def main():
 
     if not surpassed_predN:
         print(
-            f"  WARNING: predN={predN} not surpassed in {args.batch_size} steps " f"(best={best})",
+            f"  WARNING: predN={predN} not surpassed in {args.batch_size} steps "
+            f"(best={best})",
             file=sys.stderr,
         )
 
@@ -174,7 +176,9 @@ def main():
         "best_x": best_x.tolist() if best_x is not None else None,
         "runtime": round(wall_elapsed, 2),
         "cpu_time": round(cpu_elapsed, 2),
-        "wall_cpu_ratio": round(wall_elapsed / cpu_elapsed, 3) if cpu_elapsed > 0 else 1.0,
+        "wall_cpu_ratio": (
+            round(wall_elapsed / cpu_elapsed, 3) if cpu_elapsed > 0 else 1.0
+        ),
         "trajectory": trajectory,
     }
 

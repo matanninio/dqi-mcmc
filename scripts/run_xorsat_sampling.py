@@ -39,13 +39,21 @@ def parse_args():
     )
 
     parser.add_argument("-m", "--m", type=int, required=True, help="Problem size")
-    parser.add_argument("-i", "--rhs-index", type=int, required=True, help="RHS index (0-99)")
+    parser.add_argument(
+        "-i", "--rhs-index", type=int, required=True, help="RHS index (0-99)"
+    )
     parser.add_argument(
         "-N", "--num-samples", type=int, required=True, help="Number of Gibbs steps"
     )
-    parser.add_argument("-l", "--ell", type=int, required=True, help="Polynomial degree")
-    parser.add_argument("--block-size", type=int, default=10, help="Gibbs block size (default: 10)")
-    parser.add_argument("--num-burn-in", type=int, default=0, help="Burn-in samples (default: 0)")
+    parser.add_argument(
+        "-l", "--ell", type=int, required=True, help="Polynomial degree"
+    )
+    parser.add_argument(
+        "--block-size", type=int, default=10, help="Gibbs block size (default: 10)"
+    )
+    parser.add_argument(
+        "--num-burn-in", type=int, default=0, help="Burn-in samples (default: 0)"
+    )
     parser.add_argument(
         "-s",
         "--seed-offset",
@@ -71,7 +79,9 @@ def main():
     # Deterministic per-RHS seed formula (same as paper)
     seed = make_per_rhs_seed(p, rhs_index, args.seed_offset)
 
-    print(f"XOR-SAT sampling: m={m}, rhs_index={rhs_index}, ell={args.ell}, seed={seed}")
+    print(
+        f"XOR-SAT sampling: m={m}, rhs_index={rhs_index}, ell={args.ell}, seed={seed}"
+    )
 
     # Load problem
     b, v = read_problem(m, v_index=rhs_index)

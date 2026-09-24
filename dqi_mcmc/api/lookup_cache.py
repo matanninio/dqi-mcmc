@@ -54,7 +54,9 @@ def get_cache_file(m: int, p: int = 2, r: int = 1) -> Path:
         return get_cache_dir("opi") / f"lookup_opi_m{m}_p{p}_r{r}.h5"
 
 
-def load_lookup_table(m: int, n: int, ell: int, p: int = 2, r: int = 1) -> np.ndarray | None:
+def load_lookup_table(
+    m: int, n: int, ell: int, p: int = 2, r: int = 1
+) -> np.ndarray | None:
     """
     Load a pre-computed lookup table from disk.
 

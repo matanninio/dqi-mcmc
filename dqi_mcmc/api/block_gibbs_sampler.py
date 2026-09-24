@@ -226,7 +226,9 @@ class BlockGibbsSamplerOptimized:
             The binary vector with the highest score among the tries.
 
         """
-        assert num_bitflips <= self.x_length, "num_bitflips cannot be larger than x_length"
+        assert (
+            num_bitflips <= self.x_length
+        ), "num_bitflips cannot be larger than x_length"
         rng = np.random.default_rng(seed=seed)
 
         if num_warmup_samples == 0:
@@ -416,7 +418,9 @@ class BlockGibbsSamplerOptimized:
         # 1. Choose the bit indices to update
         # ====================================================
         if block_strategy == "random":
-            indices = rng.choice(self.x_length, size=block_size, replace=False).astype(np.int64)
+            indices = rng.choice(self.x_length, size=block_size, replace=False).astype(
+                np.int64
+            )
         elif block_strategy == "sequential":
             start_idx = rng.integers(0, self.x_length)
             indices = np.array(
@@ -424,7 +428,9 @@ class BlockGibbsSamplerOptimized:
                 dtype=np.int64,
             )
         else:
-            raise NotImplementedError(f"Block strategy {block_strategy} not implemented.")
+            raise NotImplementedError(
+                f"Block strategy {block_strategy} not implemented."
+            )
         # sort the indices
         indices.sort()
 
